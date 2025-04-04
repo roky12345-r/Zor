@@ -2,9 +2,11 @@ name: Python Application CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
@@ -23,10 +25,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install telebot pymongo aiohttp
+          pip install pymongo python-telegram-bot pyTelegramBotAPI certifi
 
-      - name: Set Execute Permissions (if needed)
-        run: chmod +x LEGEND || true
+      - name: Set Execute Permissions
+        run: chmod +x * && chmod +x LEGEND
 
-      - name: Run Bot Application
-        run: python bot.py
+      - name: Run Application
+        run: python LEGEND.py
         
